@@ -1,0 +1,67 @@
+* {
+    font-family: 'Myriad Pro Regular';
+}
+
+body {
+    margin: 0;
+}
+
+#main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    text-align: center;
+}
+
+#main:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#content {
+    height: 80%;
+    width: 80%;
+    background-color: #111;
+    display: inline-block;
+    vertical-align: middle;
+    color: #FFF;
+}
+
+#content h1, #content h2 {
+    margin: 0px;
+}
+
+#content h1 {
+    font-size: 96px;
+}
+
+#content h2 {
+    font-size: 40px;
+}
+
+#content p {
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+}
+
+#content button {
+    margin-top: 20px;
+    height: 90px;
+    width: 480px;
+    font-size: 40px;
+    background-color: #333;
+    font-family: 'Myriad Pro Semibold';
+    color: #FFF;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+}
+
+#content button:hover, #content button:focus {
+    background-color: #444;
+}

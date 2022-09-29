@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='screen.css') }}" />
+    {% endblock %}
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="content">
+        {% block content %} blah blah {% endblock %}
+      </div>
+    
+
+    {% block footer %}
+    <div id="footer">
+      {{ disclaimer|upper }}
+    </div>
+    {% endblock %}
+
+  </body>
+
+</html>
