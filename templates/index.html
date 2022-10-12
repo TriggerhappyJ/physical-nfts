@@ -3,10 +3,82 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-        <h2 style="margin-top: 200px;">Welcome to the</h2>
+<div class="content" id="index">
+    <div class="center">
+        <h3>Welcome to the</h3>
         <h1>Physical NFT Experience.</h1>
-        <form method="get" action="name.html">
-            <button type="submit">Create Your Personal NFT</button>
+        <form>
+            <button type="button" class="bgbutton" id="namePage">Create Your Personal NFT</button>
         </form>
-        <p>All infomation entered is deleted after the experience.</p>
+    </div>
+</div>
+<p>All infomation entered is not stored after the experience.</p>
+
+<div class="content hidden" id="name">
+    <div class="center">
+    <h3>Let's Begin With</h3>
+    <h2>Your Name.</h2>
+    <form>
+        <h4>First Name</h4>
+        <input type="text">
+        <h4>Last Name</h4>
+        <input type="text">
+        <br>
+        <button type="button" class="smlbutton" id="extraPage">Next</button>
+    </form>
+    </div>
+</div>
+
+<div class="content hidden" id="extra">
+    <div class="center">
+    <h3>We Need Some More</h3>
+    <h2>Personal Infomation.</h2>
+    <form>
+        <h4>Favorite Food</h4>
+        <input type="text">
+        <h4>Name Of First Pet</h4>
+        <input type="text">
+        <h4>Favorite Colour</h4>
+        <input type="text">
+        <br>
+        <button type="button" class="smlbutton" id="progressPage">Mint Your NFT</button>
+    </form>
+    </div>
+</div>
+
+<div class="content hidden" id="progress">
+    <div class="center">
+        <h2>Minting Your Personal NFT.</h2>
+            <div id="progressBar">
+                <div id="bar"></div>
+            </div>
+    </div>
+
+
+</div>
+
+
+<script>
+
+document.getElementById('namePage').addEventListener('click', () => {
+
+    document.getElementById('name').style.display = 'inline-block';
+    document.getElementById('index').style.display = 'none';
+
+})
+document.getElementById('extraPage').addEventListener('click', () => {
+
+document.getElementById('extra').style.display = 'inline-block';
+document.getElementById('name').style.display = 'none';
+
+})
+document.getElementById('progressPage').addEventListener('click', () => {
+
+document.getElementById('progress').style.display = 'inline-block';
+document.getElementById('extra').style.display = 'none';
+
+})
+
+</script>
+
 {% endblock %}

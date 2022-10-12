@@ -21,34 +21,63 @@ body {
     vertical-align: middle;
 }
 
-#content {
+.content {
     height: 80%;
     width: 80%;
     background-color: #111;
     display: inline-block;
     vertical-align: middle;
     color: #FFF;
+    position: relative;
+
 }
 
-#content h1, #content h2 {
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+h1, h2, h3, h4 {
     margin: 0px;
 }
 
-#content h1 {
+h1 {
     font-size: 96px;
 }
 
-#content h2 {
+h2 {
+    font-size: 64px;
+}
+
+h3 {
     font-size: 40px;
 }
 
-#content p {
-    position: fixed;
-    bottom: 0;
-    width: 80%;
+h4 {
+    font-size: 36px;
+    margin-top: 20px;
 }
 
-#content button {
+input {
+    width: 476px;
+    height: 52px;
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+}
+
+p {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #FFF;
+}
+
+.bgbutton {
     margin-top: 20px;
     height: 90px;
     width: 480px;
@@ -62,6 +91,36 @@ body {
 
 }
 
-#content button:hover, #content button:focus {
+.smlbutton {
+    width: 240px;
+    height: 52px;
+    background-color: #333;
+    margin-top: 20px;
+    padding: 0px 0px;
+    font-family: 'Myriad Pro Semibold';
+    color: #FFF;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 36px;
+}
+
+.content button:hover, .content button:focus, .smlbutton:hover, .smlbutton:focus {
+    background-color: #444;
+}
+
+.hidden {
+    display: none;
+}
+
+#progresBar {
+    width: 900px;
+    background-color: #333;
+    margin-left: 50px;
+}
+
+#bar {
+    width: 100%;
+    height: 52px;
     background-color: #444;
 }
