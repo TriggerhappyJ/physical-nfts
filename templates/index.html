@@ -41,7 +41,7 @@
         <h4>Favorite Colour</h4>
         <input type="text">
         <br>
-        <button type="button" class="smlbutton" id="progressPage">Mint Your NFT</button>
+        <button type="button" class="smlbutton" id="progressPage" onclick="setTimeout(move(), 5000)">Mint Your NFT</button>
     </form>
     </div>
 </div>
@@ -53,10 +53,25 @@
                 <div id="bar"></div>
             </div>
     </div>
-
-
 </div>
 
+<div class="content hidden" id="nft">
+    <div class="center">
+        <h3>Your Personal NFT.</h3>
+        <img src="{{ url_for('static', filename='test.png') }}">
+        <form>
+            <button type="button" class="smlbutton" id="finalPage">Claim Your NFT</button>
+        </form>
+
+    </div>
+</div>
+
+<div class="content hidden" id="final">
+    <div class="center">
+        <h3>Printing Your Reciept</h3>
+        <h1>Thank You.</h1>
+    </div>
+</div>
 
 <script>
 
@@ -66,18 +81,69 @@ document.getElementById('namePage').addEventListener('click', () => {
     document.getElementById('index').style.display = 'none';
 
 })
+
 document.getElementById('extraPage').addEventListener('click', () => {
 
-document.getElementById('extra').style.display = 'inline-block';
-document.getElementById('name').style.display = 'none';
+    document.getElementById('extra').style.display = 'inline-block';
+    document.getElementById('name').style.display = 'none';
 
 })
+
 document.getElementById('progressPage').addEventListener('click', () => {
 
-document.getElementById('progress').style.display = 'inline-block';
-document.getElementById('extra').style.display = 'none';
+    document.getElementById('progress').style.display = 'inline-block';
+    document.getElementById('extra').style.display = 'none';
 
 })
+
+document.getElementById('finalPage').addEventListener('click', () => {
+
+document.getElementById('final').style.display = 'inline-block';
+document.getElementById('nft').style.display = 'none';
+
+})
+
+</script>
+
+<script>
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+move();
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("bar");
+    var width = 1;
+    var id = setInterval(frame, 100);
+    async function frame() {
+      if (width >= 99) {
+        clearInterval(id);
+        i = 0;
+        document.getElementById('nft').style.display = 'inline-block';
+        document.getElementById('progress').style.display = 'none';
+      } else {
+            if (width == 12) {
+                await sleep(1500);
+                width++;
+                elem.style.width = width + "%";
+            } else if (width == 45) {
+                width = width + 10;
+            } else if (width == 84) {
+                await sleep(1000);
+                width++;
+                elem.style.width = width + "%";
+            } else {
+                width++;
+                elem.style.width = width + "%";
+            }
+      }
+    }
+  }
+}
+
 
 </script>
 

@@ -24,12 +24,10 @@ body {
 .content {
     height: 80%;
     width: 80%;
-    background-color: #111;
     display: inline-block;
     vertical-align: middle;
     color: #FFF;
     position: relative;
-
 }
 
 .center {
@@ -64,10 +62,12 @@ h4 {
 
 input {
     width: 476px;
-    height: 52px;
+    height: 42px;
     background-color: #333;
     border: none;
     border-radius: 10px;
+    color: #FFF;
+    font-size: 20px;
 }
 
 p {
@@ -75,6 +75,7 @@ p {
     bottom: 0;
     width: 100%;
     color: #FFF;
+    font-size: 10px;
 }
 
 .bgbutton {
@@ -88,7 +89,7 @@ p {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s;
-
+    border: none;
 }
 
 .smlbutton {
@@ -103,6 +104,7 @@ p {
     cursor: pointer;
     transition: background-color 0.2s;
     font-size: 36px;
+    border: none;
 }
 
 .content button:hover, .content button:focus, .smlbutton:hover, .smlbutton:focus {
@@ -113,14 +115,30 @@ p {
     display: none;
 }
 
-#progresBar {
-    width: 900px;
+#progressBar {
+    width: 1000px;
     background-color: #333;
-    margin-left: 50px;
+    position: absolute;
+    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
 }
 
 #bar {
-    width: 100%;
+    width: 1%;
     height: 52px;
     background-color: #444;
+    border-radius: 10px;
+}
+
+#progress h2 {
+    margin-bottom: 50px;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+    border: #444 10px solid;
+    border-radius: 10px;
 }
