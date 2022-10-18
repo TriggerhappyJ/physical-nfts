@@ -20,9 +20,9 @@
     <h2>Your Name.</h2>
     <form>
         <h4>First Name</h4>
-        <input type="text">
+        <input type="text" id="fName">
         <h4>Last Name</h4>
-        <input type="text">
+        <input type="text" id="lName">
         <br>
         <button type="button" class="smlbutton" id="extraPage">Next</button>
     </form>
@@ -35,11 +35,11 @@
     <h2>Personal Infomation.</h2>
     <form>
         <h4>Favorite Food</h4>
-        <input type="text">
+        <input type="text" id="info1">
         <h4>Name Of First Pet</h4>
-        <input type="text">
+        <input type="text" id="info2">
         <h4>Favorite Colour</h4>
-        <input type="text">
+        <input type="text" id="info3">
         <br>
         <button type="button" class="smlbutton" id="progressPage" onclick="setTimeout(move(), 5000)">Mint Your NFT</button>
     </form>
@@ -58,7 +58,7 @@
 <div class="content hidden" id="nft">
     <div class="center">
         <h3>Your Personal NFT.</h3>
-        <img src="{{ url_for('static', filename='test.png') }}">
+        <img id="nftImage" src="{{ url_for('static', filename='/renders/nft2.png') }}">
         <form>
             <button type="button" class="smlbutton" id="finalPage">Claim Your NFT</button>
         </form>
@@ -73,17 +73,51 @@
     </div>
 </div>
 
+<div class="content hidden" id="videoContainer">
+    <video width="100%" height="100%" id="video">
+        <source src="../static/video.mp4" type="video/mp4"> 
+    </video>
+</div>
+
 <script>
+var usingApp = false;
+
+async function videoTest() {
+    await sleep(5000);
+    if (usingApp == false) {
+    document.getElementById('index').style.display = 'none';
+    document.getElementById('videoContainer').style.display = 'inline-block';
+    var vid = document.getElementById("video");
+    vid.autoplay = true;
+    vid.load();
+    console.log('Waiting 15 seconds')
+    await sleep(15000);
+    document.getElementById('videoContainer').style.display = 'none';
+    document.getElementById('index').style.display = 'inline-block';
+    console.log("Video has ended")
+    await sleep(30000);
+    }
+    if (usingApp == false) {
+        videoTest()
+    }
+}
+
+
+if (usingApp == false) {
+    if (usingApp == false) {
+    videoTest();
+    }
+}
+
 
 document.getElementById('namePage').addEventListener('click', () => {
 
     document.getElementById('name').style.display = 'inline-block';
     document.getElementById('index').style.display = 'none';
-
+    usingApp = true;
 })
 
 document.getElementById('extraPage').addEventListener('click', () => {
-
     document.getElementById('extra').style.display = 'inline-block';
     document.getElementById('name').style.display = 'none';
 
@@ -93,15 +127,59 @@ document.getElementById('progressPage').addEventListener('click', () => {
 
     document.getElementById('progress').style.display = 'inline-block';
     document.getElementById('extra').style.display = 'none';
-
+    var fName = document.getElementById('fName').value;
+    var lName = document.getElementById('lName').value;
+    var info1 = document.getElementById('info1').value;
+    var info2 = document.getElementById('info2').value;
+    var info3 = document.getElementById('info3').value;
+    render(fName, lName, info1, info2, info3);
 })
 
 document.getElementById('finalPage').addEventListener('click', () => {
-
-document.getElementById('final').style.display = 'inline-block';
-document.getElementById('nft').style.display = 'none';
+    document.getElementById('final').style.display = 'inline-block';
+    document.getElementById('nft').style.display = 'none';
+    var fName = document.getElementById('fName').value;
+    var lName = document.getElementById('lName').value;
+    print(fName, lName);
 
 })
+
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function nameInput(fName, lName){
+    $.post("/nameInput", {
+        
+    })
+}
+
+async function render(fName, lName, info1, info2, info3){    
+    // Send data to flask backend
+    $.post("/render", {
+        fName: fName,
+        lName: lName,
+        info1: info1,
+        info2: info2,
+        info3: info3
+    });
+
+    await sleep(6000);
+    $.get("/render", async function(imageName) {
+        var imageName = $.parseJSON(imageName)
+        console.log(imageName)
+        document.getElementById('nftImage').src = "../static/renders/"+imageName
+    }) 
+}
+
+function print(fName, lName) {
+    $.post("/print", {
+        fName: fName,
+        lName: lName
+    }
+}
 
 </script>
 
@@ -143,8 +221,7 @@ function move() {
     }
   }
 }
-
-
 </script>
+
 
 {% endblock %}
